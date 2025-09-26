@@ -1,0 +1,155 @@
+   :root{
+      --bg:#f4f6fb;
+      --card:#ffffff;
+      --accent:#34495e;
+      --accent-2:#2c3e50;
+      --muted:#7d8794;
+      --primary:#1f72ff;
+      --danger:#e74c3c;
+      --radius:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      background: linear-gradient(180deg, var(--bg), #eef2fb 60%);
+      color:#222;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* top header (small) */
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:64px;
+      background:var(--accent-2);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      z-index:40;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    }
+    .site-header .brand { font-weight:700; font-size:18px; letter-spacing:0.2px; }
+    .site-header nav { display:flex; gap:14px; align-items:center; }
+    .site-header nav a { color:rgba(255,255,255,0.86); text-decoration:none; font-size:14px; padding:8px; }
+
+ .page-wrap {
+  width: 100%;
+  max-width: 400px;
+  margin: 120px auto; /* centers horizontally with auto */
+}
+
+/* Hamburger button (hidden on desktop) */
+    .menu-toggle {
+      display:none;
+      background:none;
+      border:none;
+      color:white;
+      font-size:26px;
+      cursor:pointer;
+    }
+
+  /* Responsive header */
+    @media (max-width:768px) {
+      .site-header nav {
+        display:none;
+        flex-direction:column;
+        background:#2c3e50;
+        position:absolute;
+        top:64px;
+        left:0;
+        right:0;
+        padding:10px 0;
+      }
+      .site-header nav.active {
+        display:flex;
+      }
+      .menu-toggle {
+        display:block;
+      }
+    }
+
+
+   .login-grid {
+  display: flex;
+  justify-content: center;
+}
+
+
+    /* Left: marketing/preview */
+    .promo{
+      background: linear-gradient(180deg, rgba(31,114,255,0.06), rgba(31,114,255,0.02));
+      padding:28px;
+      border-radius:var(--radius);
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:12px;
+    }
+    .promo h2{ margin:0; color:var(--accent-2); }
+    .promo p{ margin:0; color:var(--muted); }
+
+    /* Right: card with form */
+    .card{
+      background:var(--card);
+      padding:22px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(30,40,60,0.06);
+      margin: auto;
+    }
+    .card h3{ margin:0 0 12px 0; color:var(--accent-2); }
+    .form-row{ margin-bottom:12px; }
+    label{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px; }
+    input[type="text"], input[type="password"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e6e9ef;
+      font-size:15px;
+      background:transparent;
+    }
+    .actions{ display:flex; gap:12px; align-items:center; margin-top:10px; }
+    button.primary{
+      background:var(--primary);
+      color:#fff;
+      border:0;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(31,114,255,0.12);
+    }
+    button.ghost{
+      background:transparent;
+      color:var(--accent-2);
+      border:1px solid #e6e9ef;
+      padding:9px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .small{ font-size:13px; color:var(--muted); margin-top:8px; }
+    .error{ color:var(--danger); font-size:13px; margin-top:8px; display:none; }
+
+    /* small helper */
+    .show-pass{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    @media (max-width:900px){
+      .login-grid{ grid-template-columns: 1fr; }
+      .page-wrap{ margin-top:84px; }
+    }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KIDZEE PLAYHOME - LOGIN</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="shortcut icon" href="https://images.seeklogo.com/logo-png/33/1/kidzee-school-round-logo-png_seeklogo-330822.png">
+  
+</head>
+<body>
+
+  <!-- top header (shared site header) -->
+  <header class="site-header" role="banner">
+    <div class="brand">Kidzee PlayHome</div>
+    <nav aria-label="Primary">
+      <a href="blog.html">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Programs</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap" role="main">
+    <div class="login-grid">
+
+      <aside class="card" aria-labelledby="loginTitle">
+        <h3 id="loginTitle">Sign in to your account</h3>
+
+        <form id="loginForm" autocomplete="off" novalidate>
+          <div class="form-row">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="admin@example.com" required />
+          </div>
+
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter password" required />
+            <div class="show-pass">
+              <input id="togglePass" type="checkbox" aria-label="Show password" />
+              <label for="togglePass">Show password</label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="primary">Submit</button>
+            <button type="button" class="ghost" id="demoBtn">Demo</button>
+          </div>
+
+          <div class="small">Don't have credentials? This demo accepts any non-empty values.</div>
+          <div class="error" id="err">Please enter both username and password.</div>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+     function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+    // Elements
+    const form = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const err = document.getElementById('err');
+    const toggle = document.getElementById('togglePass');
+    const demoBtn = document.getElementById('demoBtn');
+
+    // Show/hide password
+    toggle.addEventListener('change', () => {
+      passwordInput.type = toggle.checked ? 'text' : 'password';
+    });
+
+    // Demo button fills quick creds
+    demoBtn.addEventListener('click', () => {
+      usernameInput.value = 'admin@example.com';
+      passwordInput.value = 'password123';
+      usernameInput.focus();
+    });
+
+    // On submit -> validate & redirect to dashboard
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = usernameInput.value.trim();
+      const pass = passwordInput.value.trim();
+
+      if (!user || !pass) {
+        err.style.display = 'block';
+        return;
+      }
+      err.style.display = 'none';
+
+      // Save a flag in sessionStorage to simulate "logged in"
+      sessionStorage.setItem('isAuthenticated', 'true');
+      sessionStorage.setItem('username', user);
+
+      // Redirect to dashboard page
+      window.location.href = 'dashboard.html';
+    });
+
+    // If already logged in, send to dashboard automatically
+    if (sessionStorage.getItem('isAuthenticated') === 'true') {
+      // optional: redirect immediately
+      // window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>
